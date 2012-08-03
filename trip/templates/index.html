@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>研勤/盟创2012年旅游投票</h1>
+<p>请大家使用easyflow的用户名和密码</p>
+<form action="/vote" method="POST" class="well form-inline">
+    {{form.csrf_token}}
+    {{form.hidden_tag()}}
+    {{form.name.label}}<br/>
+    {{form.name}}<br/>
+    {% if form.name.errors %}
+        <ul class="error">
+            {% for error in form.name.errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <br/>
+    {{form.password.label}}<br/>
+    {{form.password}}<br/>
+    {% if form.password.errors %}
+        <ul class="error">
+            {% for error in form.password.errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}<br/>
+    <label>地点(请选择一或两项):</label>
+    {% if form.first.errors %}
+        <ul class="error">
+            {% for error in form.first.errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}<br/>
+    {{form.first}}{{form.first.label}}<br/>
+    {{form.second}}{{form.second.label}}<br/>
+    {{form.third}}{{form.third.label}}<br/>
+    {{form.fourth}}{{form.fourth.label}}</br>
+    <input type="submit" value="投票"/> <a href="/result">投票结果</a>
+</form>
+{% endblock %}

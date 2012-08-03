@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>地点</th>
+            <th>投票数</th>
+            <th>百分比</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in results %}
+        <tr>
+            <td>{{r.place}}</td>
+            <td>{{r.votes}}</td>
+            <td>{{"%.1f"|format(r.percent)}}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tr>
+        <td>总投票数</td>
+        <td>{{sum}}</td>
+        <td>100.0%</td>
+    </tr>
+</table>
+
+{% endblock %}
